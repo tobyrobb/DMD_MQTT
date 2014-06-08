@@ -9,12 +9,15 @@ Toby Robb
 This is a test sketch for the Arduino running the DMD led display 
 through the web and ethernet.
 
-Writing to the display via an MQTT server
+Write to the display via an MQTT server.
+
+Publish message to the topic "DMD"
 
 the dmd display connects to D9,10,11,12,13 and gnd
 
 as per its subboard
  
+there is also the ability to send commands to the UNO
 
 
 NOTES:
@@ -33,7 +36,7 @@ Publish messages on your MQTT server to the DMD topic
 #include <Ethernet.h>
 #include <PubSubClient.h>
 #include <SPI.h>        //SPI.h must be included as DMD is written by SPI (the IDE complains otherwise)
-#include <DMD.h>        //
+#include <DMD.h>        //  The Freetronics driver library
 #include <TimerOne.h>   //
 #include "SystemFont5x7.h"
 
@@ -152,6 +155,8 @@ void showMessage(){
 
 void checkCommand(String inString){
 
+  // some examples of commands you could run
+    
     if (inString.equals("freetronics")){
    Serial.println("www.freetronics.com for all your Adruino needs !");   //Just for debugging
    message = "www.freetronics.com for all your Adruino needs !";
@@ -164,4 +169,10 @@ void checkCommand(String inString){
    message = "Programmed using Arduino V1.5 and a Freetronics DMD LED Display";
        }
  
+   if (inString.equals("relayOn")){
+  Serial.println("Turning on the relay");   //Just for debugging
+   message = "Turning on the relay";
+   //digitalWrite(relayPin, HIGH);
+       }
+       
  }

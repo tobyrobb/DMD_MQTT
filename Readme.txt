@@ -1,3 +1,6 @@
+Here is a way to send MQTT topic messages straight to a freetronics DMD display.
+
+
 You'll need:
 
 Hardware:
